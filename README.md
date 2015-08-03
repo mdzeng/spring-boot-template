@@ -39,6 +39,7 @@ $ docker build .
 ```
 
 In the console output, you should see the last line:
+
 "Successfully built ____" <- That is the image we want to run
 
 
@@ -47,6 +48,7 @@ In the console output, you should see the last line:
 $ docker run -p 8080:8080 <imageId>
 ```
 -p 8080:8080 binds port 8080 on the host 8080 in this container
+
 You can add '-d' to run as background
 
 #### Hit endpoints!
