@@ -1,7 +1,4 @@
 .idea/
 .gradle/
 build/
-gradle/
-gradlew
-gradlew.bat
 spring-boot-template.iml
