@@ -6,7 +6,15 @@ Template for Spring Boot with Gradle and Docker on Java 8
 2. Docker (and [boot2docker](https://github.com/boot2docker/boot2docker))
 3. VirtualBox
 
-## Start up App with Docker
+
+## Start up App
+
+### Without Docker
+```console
+$ ./gradlew bootRun
+```
+
+### Docker
 
 #### Build Java project with Gradle wrapper
 ```console
