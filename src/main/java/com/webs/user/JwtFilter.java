@@ -7,6 +7,7 @@ import com.nimbusds.jwt.SignedJWT;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -19,8 +20,9 @@ import java.io.IOException;
 import java.text.ParseException;
 
 /**
- * Created by chris on 8/5/15.
+ * JWT Authentication service
  */
+@Service
 public class JwtFilter extends GenericFilterBean {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
@@ -28,15 +30,17 @@ public class JwtFilter extends GenericFilterBean {
     @Autowired
     private AppConfig config;
 
-    public JwtFilter() {
-
-    }
-
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         final HttpServletRequest req = (HttpServletRequest) request;
         final HttpServletResponse resp = (HttpServletResponse)response;
+
+        if (!isRouteSecured(req.getRequestURI()))
+        {
+            chain.doFilter(request, response);
+            return;
+        }
 
         String tokenParam = req.getParameter("token");
 
@@ -48,13 +52,19 @@ public class JwtFilter extends GenericFilterBean {
 
         if (tokenParam != null) {
             try {
-                JWSVerifier verifier = new MACVerifier("asdfalksjdflkajsdflkjaslkdfjlasjdflkasjdflkjasldfjlasjdflkajsdlfkjaslkdfj");
                 SignedJWT parsedToken = SignedJWT.parse(tokenParam);
+                final String issuer = parsedToken.getJWTClaimsSet().getIssuer();
 
-                if (parsedToken.verify(verifier)) {
-                    req.setAttribute("claims", parsedToken.getJWTClaimsSet());
-                    chain.doFilter(request, response);
-                    return;
+                if (issuer != null && this.config.hasPartner(issuer)) {
+                    JWSVerifier verifier = new MACVerifier(this.config.getPartnerSecret(issuer));
+                    if (parsedToken.verify(verifier)) {
+                        req.setAttribute("issuer", issuer);
+                        req.setAttribute("claims", parsedToken.getJWTClaimsSet());
+                        chain.doFilter(request, response);
+                        return;
+                    }
+                } else {
+                    logger.warn("Unknown issuer");
                 }
             } catch (ParseException e) { //Failed to parse token
                 logger.warn("Error parsing token");
@@ -63,5 +73,14 @@ public class JwtFilter extends GenericFilterBean {
             }
         }
         resp.sendError(401, "Authentication failed");
+    }
+
+    private boolean isRouteSecured(String uri)
+    {
+        for(String root : this.config.getSecureRoutes()) {
+            if (uri.startsWith(root))
+                return true;
+        }
+        return false;
     }
 }
