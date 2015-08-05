@@ -17,14 +17,11 @@ import com.webs.user.repository.UserRepository;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping("/com/webs/user")
+@RequestMapping("/user")
 public class UserController {
 
 	private static final String template = "Hello, %s!";
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
-	@Resource
-	private UserRepository userRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
