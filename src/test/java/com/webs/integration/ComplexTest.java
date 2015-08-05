@@ -6,7 +6,7 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import user.Application;
+import com.webs.user.Application;
 
 /**
  * Created by chris on 8/5/15.
