@@ -1,9 +1,12 @@
 package com.webs.integration;
 
 import com.webs.IntegrationTest;
+import com.webs.user.model.User;
+import com.webs.user.repository.UserRepository;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.webs.user.Application;
@@ -15,8 +18,16 @@ import com.webs.user.Application;
 @SpringApplicationConfiguration(classes = Application.class)
 @Category(IntegrationTest.class)
 public class ComplexTest {
+    @Autowired
+    public UserRepository userRepository;
+
     @Test
     public void MoreComplexTest() {
         assert 2 * 3 == 6;
+    }
+
+    @Test
+    public void UserRepoInsertTest() {
+        userRepository.save(new User(0L, "tobias"));
     }
 }
