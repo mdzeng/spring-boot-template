@@ -1,6 +1,6 @@
 buildscript {
 	repositories {
-		mavenCentral()
+		jcenter()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
@@ -13,7 +13,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'org.flywaydb.flyway'
 
 repositories {
-	mavenCentral()
+	jcenter()
 }
 
 dependencies {
