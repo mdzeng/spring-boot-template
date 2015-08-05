@@ -25,7 +25,7 @@ $ docker start postgres-db
 ```
 In application.yml, update the Spring datasource under the local profile to your docker host IP.
 
-We use Flyway to do DB migrations, so run:
+We use Flyway to do DB migrations(so modify the postgres info in build.gradle before running this), so run:
 ```console
 $ ./gradlew flywayMigrate -i
 ```
