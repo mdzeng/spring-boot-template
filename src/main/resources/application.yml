@@ -1,25 +1,29 @@
 spring:
-   profiles: default
-
-spring.jpa:
-   driverClassName: org.h2.Driver
+   application:
+      name: template-service
+   datasource:
+      driverClassName: org.h2.Driver
+service:
+   security:
+      partners:
+         webs: lasjdflkajsdlfkj
+         vp: alksjdflkajsdlfkjalksdjflkasjdfl
 
 ---
+
 spring:
    profiles: test
 
 ---
+
 spring:
-   profiles: local
-
-spring.datasource:
-   driverClassName: org.postgresql.Driver
-   url: jdbc:postgresql://192.168.59.106:5432/postgres
-   username: postgres
-   password: pass
-   ddl-auto: create-drop
-
-spring.jpa:
-   database: POSTGRESQL
-   show-sql: true
-   ddl-auto: create-drop
+   profiles: production
+   datasource:
+      driverClassName: org.postgresql.Driver
+      url: jdbc:postgresql://192.168.59.106:5432/postgres
+      username: postgres
+      password: pass
+      ddl-auto: create-drop
+   jpa:
+      database: postgres
+      show-sql: true

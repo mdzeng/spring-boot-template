@@ -17,7 +17,7 @@ import com.webs.user.repository.UserRepository;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
 
 	private static final String template = "Hello, %s!";
