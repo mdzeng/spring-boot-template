@@ -6,7 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.webs.user.model.User;
 
-@RepositoryRestResource(collectionResourceRel = "users", path = "users")
 public interface UserRepository extends CrudRepository<User, Long>, UserRepositoryCustom {
 	User findByUserId(@Param("userId") Long userId);
 
