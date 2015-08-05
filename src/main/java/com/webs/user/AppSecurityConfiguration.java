@@ -11,8 +11,8 @@ import java.util.Set;
  * Generic configuration for the application
  */
 @Component
-@ConfigurationProperties(prefix = "service")
-public class AppConfig {
+@ConfigurationProperties(prefix = "app.security")
+public class AppSecurityConfiguration {
     private HashMap<String, String> partners;
 
     private List<String> secureRoutes;

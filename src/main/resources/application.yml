@@ -3,14 +3,15 @@ spring:
       name: template-service
    datasource:
       driverClassName: org.h2.Driver
-service:
-   partners:
-      webs: CNZNeEuTWeLrnImRTUDtJIkw7PFERuuO7GXoJbgnclpI7Is77IFvcurxl4LJ
-      vp: G4SKNPYmv9j4WSyhrqyAmRTUDY85x2nGourhqUtJIkw7PFErxl4LJg1yr7Go
-      internal: U9WuAWc1y50UNQHAxriNplgDdNRjOXerT73KdemBA1EJ3jrOupXUo8m9zvIV
-   secureRoutes:
-    - /api
-    - /rpc
+app:
+   security:
+      partners:
+         webs: CNZNeEuTWeLrnImRTUDtJIkw7PFERuuO7GXoJbgnclpI7Is77IFvcurxl4LJ
+         vp: G4SKNPYmv9j4WSyhrqyAmRTUDY85x2nGourhqUtJIkw7PFErxl4LJg1yr7Go
+         internal: U9WuAWc1y50UNQHAxriNplgDdNRjOXerT73KdemBA1EJ3jrOupXUo8m9zvIV
+      secureRoutes:
+       - /api
+       - /rpc
 ---
 
 spring:

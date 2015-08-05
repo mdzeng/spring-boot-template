@@ -28,7 +28,7 @@ public class JwtFilter extends GenericFilterBean {
     private static final Logger logger = LoggerFactory.getLogger(JwtFilter.class);
 
     @Autowired
-    private AppConfig config;
+    private AppSecurityConfiguration config;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
