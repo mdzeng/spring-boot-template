@@ -1,4 +1,5 @@
 .idea/
 .gradle/
 build/
-spring-boot-template.iml
+*.iml
+*.swp

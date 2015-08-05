@@ -1,4 +1,4 @@
-package user.controller;
+package com.webs.user.controller;
 
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.core.util.StatusPrinter;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import user.repository.UserRepository;
+import com.webs.user.repository.UserRepository;
 
 import javax.annotation.Resource;
 
@@ -22,9 +22,6 @@ public class UserController {
 
 	private static final String template = "Hello, %s!";
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-
-	@Resource
-	private UserRepository userRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
