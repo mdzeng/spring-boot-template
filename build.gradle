@@ -4,11 +4,13 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+		classpath 'org.flywaydb:flyway-gradle-plugin:3.2.1'
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
+apply plugin: 'org.flywaydb.flyway'
 
 repositories {
 	mavenCentral()
@@ -19,10 +21,18 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile("org.springframework.boot:spring-boot-starter-web")
 	compile("org.springframework.boot:spring-boot-starter-actuator")
+	compile("postgresql:postgresql:9.1-901.jdbc4")
 	compile("com.h2database:h2")
 	testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 jar {
 	baseName = 'spring-boot-template'
+}
+
+//TODO: can we somehow pass this in from application.yml?
+flyway {
+	url = 'jdbc:postgresql://192.168.59.106:5432/postgres'
+	user = 'postgres'
+	password = 'pass'
 }
