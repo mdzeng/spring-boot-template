@@ -22,12 +22,12 @@ public class ComplexTest {
     public UserRepository userRepository;
 
     @Test
-    public void MoreComplexTest() {
+    public void moreComplexTest() {
         assert 2 * 3 == 6;
     }
 
     @Test
-    public void UserRepoInsertTest() {
+    public void userRepoInsertTest() {
         userRepository.save(new User(0L, "tobias"));
     }
 }
