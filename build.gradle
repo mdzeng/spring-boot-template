@@ -22,8 +22,10 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
 	compile("org.springframework.boot:spring-boot-starter-actuator")
 	compile("postgresql:postgresql:9.1-901.jdbc4")
-	compile("com.h2database:h2")
+	testCompile("com.h2database:h2")
+	testCompile("junit:junit:4.12")
 	testCompile("org.springframework.boot:spring-boot-starter-test")
+
 }
 
 jar {
@@ -35,4 +37,16 @@ flyway {
 	url = 'jdbc:postgresql://192.168.59.106:5432/postgres'
 	user = 'postgres'
 	password = 'pass'
+}
+
+test {
+	useJUnit {
+		excludeCategories("com.webs.IntegrationTest")
+	}
+}
+
+task(integrationTest, type: Test, description: "Run integration tests") {
+	useJUnit {
+		includeCategories("com.webs.IntegrationTest")
+	}
 }

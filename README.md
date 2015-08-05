@@ -6,6 +6,14 @@ Template for Spring Boot with Gradle and Docker on Java 8
 2. Docker (and [boot2docker](https://github.com/boot2docker/boot2docker))
 3. VirtualBox
 
+## Getting Started
+
+There's a few steps you need to do to get the template set up for your needs:
+
+1. Change the name
+2. Update the `build.gradle` file with the name of your service
+3. Update the `application.yml` with your application's settings
+
 ## Start up App
 
 ## Setup a Postgres Image and Run
