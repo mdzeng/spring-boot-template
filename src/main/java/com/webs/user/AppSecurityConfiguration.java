@@ -8,40 +8,41 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Generic configuration for the application
+ * Configuration having to do with the RESTful service of the application and filtering
+ * of the JWT Tokens
  */
 @Component
 @ConfigurationProperties(prefix = "app.security")
 public class AppSecurityConfiguration {
-    private HashMap<String, String> partners;
+	private HashMap<String, String> partners;
 
-    private List<String> secureRoutes;
+	private List<String> secureRoutes;
 
-    public List<String> getSecureRoutes() {
-        return secureRoutes;
-    }
+	public List<String> getSecureRoutes() {
+		return secureRoutes;
+	}
 
-    public void setSecureRoutes(List<String> secureRoutes) {
-        this.secureRoutes = secureRoutes;
-    }
+	public void setSecureRoutes(List<String> secureRoutes) {
+		this.secureRoutes = secureRoutes;
+	}
 
-    public boolean hasPartner(String partnerName) {
-        return partners.containsKey(partnerName);
-    }
+	public boolean hasPartner(String partnerName) {
+		return partners.containsKey(partnerName);
+	}
 
-    public Set<String> getPartnerKeys() {
-        return partners.keySet();
-    }
+	public Set<String> getPartnerKeys() {
+		return partners.keySet();
+	}
 
-    public String getPartnerSecret(String partnerName) {
-        return partners.get(partnerName);
-    }
+	public String getPartnerSecret(String partnerName) {
+		return partners.get(partnerName);
+	}
 
-    public HashMap<String, String> getPartners() {
-        return partners;
-    }
+	public HashMap<String, String> getPartners() {
+		return partners;
+	}
 
-    public void setPartners(HashMap<String, String> partners) {
-        this.partners = partners;
-    }
+	public void setPartners(HashMap<String, String> partners) {
+		this.partners = partners;
+	}
 }
