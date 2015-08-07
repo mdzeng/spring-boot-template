@@ -18,16 +18,16 @@ import com.webs.user.Application;
 @SpringApplicationConfiguration(classes = Application.class)
 @Category(IntegrationTest.class)
 public class ComplexTest {
-    @Autowired
-    public UserRepository userRepository;
+	@Autowired
+	public UserRepository userRepository;
 
-    @Test
-    public void moreComplexTest() {
-        assert 2 * 3 == 6;
-    }
+	@Test
+	public void moreComplexTest() {
+		assert 2 * 3 == 6;
+	}
 
-    @Test
-    public void userRepoInsertTest() {
-        userRepository.save(new User(0L, "tobias"));
-    }
+	@Test
+	public void userRepoInsertTest() {
+		userRepository.save(new User(0L, "tobias"));
+	}
 }
