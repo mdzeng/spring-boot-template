@@ -1,17 +1,19 @@
 buildscript {
 	repositories {
-		mavenCentral()
+		jcenter()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+		classpath 'org.flywaydb:flyway-gradle-plugin:3.2.1'
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
+apply plugin: 'org.flywaydb.flyway'
 
 repositories {
-	mavenCentral()
+	jcenter()
 }
 
 dependencies {
@@ -20,9 +22,32 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-web")
 	compile("org.springframework.boot:spring-boot-starter-actuator")
 	compile("com.h2database:h2")
+	compile("postgresql:postgresql:9.1-901.jdbc4")
+	compile("com.nimbusds:nimbus-jose-jwt:3.9.2")
+	testCompile("junit:junit:4.12")
 	testCompile("org.springframework.boot:spring-boot-starter-test")
+
 }
 
 jar {
 	baseName = 'spring-boot-template'
+}
+
+//TODO: can we somehow pass this in from application.yml?
+flyway {
+	url = 'jdbc:postgresql://192.168.59.106:5432/postgres'
+	user = 'postgres'
+	password = 'pass'
+}
+
+test {
+	useJUnit {
+		excludeCategories("com.webs.IntegrationTest")
+	}
+}
+
+task(integrationTest, type: Test, description: "Run integration tests") {
+	useJUnit {
+		includeCategories("com.webs.IntegrationTest")
+	}
 }
